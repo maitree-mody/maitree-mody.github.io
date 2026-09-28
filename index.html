@@ -163,6 +163,10 @@
   .lname span { display: inline-block; animation: rise .9s cubic-bezier(.2,.8,.2,1) both; }
   .lname span + span { animation-delay: .12s; }
   @keyframes rise { from { transform: translateY(105%); } to { transform: none; } }
+  .gantry { display: flex; gap: 10px; margin-bottom: 26px; padding: 10px 12px; background: #0A0B0E; border: 1px solid #23262E; border-radius: 6px; animation: fadein .6s ease both; }
+  .gantry div { display: flex; flex-direction: column; gap: 7px; padding: 7px; background: #16181E; border-radius: 4px; }
+  .gantry i { width: clamp(18px, 3.4vw, 28px); aspect-ratio: 1; border-radius: 50%; background: #2A1416; box-shadow: inset 0 2px 4px rgba(0,0,0,.6); transition: background .08s, box-shadow .08s; }
+  .gantry div.lit i { background: #E8212E; box-shadow: 0 0 14px rgba(232,33,46,.85), 0 0 34px rgba(232,33,46,.35), inset 0 -2px 3px rgba(0,0,0,.25); }
   .lsub { font-family: var(--mono); font-size: .72rem; letter-spacing: .22em; text-transform: uppercase; color: #9097A6; margin: 0; animation: fadein .8s ease .45s both; }
   @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
   .lrow { display: flex; align-items: center; gap: 14px; width: min(340px, 72vw); margin-top: 10px; animation: fadein .8s ease .6s both; }
@@ -465,6 +469,7 @@
 <body>
 <div class="loader" id="loader" aria-hidden="true">
   <div class="lcenter">
+    <div class="gantry" id="gantry"><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div><div><i></i><i></i></div></div>
     <p class="lname"><span>Maitree</span><span>Mody</span></p>
     <p class="lsub">Economics &amp; Computer Science · Barnard College</p>
     <div class="lrow"><div class="lbar"><i id="lfill"></i></div><span class="lcount" id="lcount">0</span></div>
@@ -1216,7 +1221,8 @@
   try { seen = sessionStorage.getItem('mm-intro') === '1'; } catch (err) {}
   if (reduce || seen) { loader.remove(); startLights(); }
   else {
-    const t0 = performance.now(), DUR = 1800;
+    const t0 = performance.now(), DUR = 2500;
+    const lamps = [...$('gantry').children];
     let closed = false;
     const close = () => {
       if (closed) return;
@@ -1224,14 +1230,15 @@
       try { sessionStorage.setItem('mm-intro', '1'); } catch (err) {}
       loader.classList.add('done');
       setTimeout(() => loader.remove(), 800);
-      startLights();
     };
     const tick = now => {
       if (closed) return;
       const p = Math.min(1, (now - t0) / DUR), eased = 1 - Math.pow(1 - p, 3);
       $('lfill').style.width = (eased * 100).toFixed(1) + '%';
       $('lcount').textContent = Math.round(eased * 100);
-      if (p < 1) requestAnimationFrame(tick); else setTimeout(close, 250);
+      lamps.forEach((l, i) => l.classList.toggle('lit', p >= (i + 1) / 5 - 0.02)); // one light per 20%
+      if (p < 1) requestAnimationFrame(tick);
+      else setTimeout(() => { lamps.forEach(l => l.classList.remove('lit')); setTimeout(close, 420); }, 650); // hold, then lights out
     };
     requestAnimationFrame(tick);
     loader.addEventListener('click', close);
