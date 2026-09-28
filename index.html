@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Maitree Mody</title>
+<meta name="description" content="Maitree Mody. Economics & Computer Science at Barnard College, Columbia University, with a focus on investment management. Take a lap: every corner is a different part of the story.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root {
+    /* day race */
+    --paper: #EEF1EA;
+    --panel: #FFFFFF;
+    --ink: #14161D;
+    --muted: #596070;
+    --line: #D6DBD0;
+    --ground: #C9DDB4;
+    --ground-2: #C1D8AA;
+    --deco1: #F3CBD7;
+    --deco2: #E7AFC1;
+    --deco3: #C8243A;
+    --water: #8CC3DE;
+    --water-2: #6FAED0;
+    --yacht: #FFFFFF;
+    --runoff: #E6DEC9;
+    --edge: #FFFFFF;
+    --asphalt: #3B3E48;
+    --kerb: #D7263D;
+    --mark: #D9A445;
+    --mark-text: #8A5A12;
+    --car: #D9A445;
+    --car-trim: #14161D;
+    --strip: #14161D;
+    --strip-ink: #FFFFFF;
+    --hud: rgba(20, 22, 29, 0.93);
+    --hud-ink: #FFFFFF;
+    --hud-muted: #A3A9B8;
+    --pb: #6E56A8;
+    --marker: #FFFFFF;
+    --marker-ink: #14161D;
+    --shadow: 0 14px 44px rgba(20, 30, 10, 0.14), 0 2px 6px rgba(20, 30, 10, 0.06);
+    --display: "Titillium Web", "Avenir Next Condensed", "Arial Narrow", system-ui, sans-serif;
+    --body: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+    --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  /* per-circuit scenery, day */
+  :root[data-track="monaco"] {
+    --ground: #E6DBC4; --ground-2: #DED1B7; --deco1: #D98A6E; --deco2: #C9745A; --deco3: #1F4E79;
+    --water: #86C0DD; --water-2: #6AAED3; --yacht: #FFFFFF; --runoff: #CFC8BA;
+  }
+  :root[data-track="monza"] {
+    --ground: #B3CD9B; --ground-2: #AAC790; --deco1: #739B5E; --deco2: #62894F; --deco3: #CE2B37;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      /* night race */
+      color-scheme: dark;
+      --paper: #0C0F14;
+      --panel: #151A22;
+      --ink: #E8EBF1;
+      --muted: #98A0B1;
+      --line: #262D39;
+      --ground: #0F1A14;
+      --ground-2: #121F18;
+      --deco1: #6E4453;
+      --deco2: #86526A;
+      --deco3: #E0485C;
+      --water: #0E2638;
+      --water-2: #16384F;
+      --yacht: #D7DCE2;
+      --runoff: #22262C;
+      --edge: #F4F4F0;
+      --asphalt: #454A56;
+      --kerb: #E03A4E;
+      --mark: #E3B665;
+      --mark-text: #E3B665;
+      --car: #E3B665;
+      --car-trim: #0C0F14;
+      --strip: #05070A;
+      --strip-ink: #FFFFFF;
+      --hud: rgba(5, 7, 10, 0.92);
+      --hud-ink: #FFFFFF;
+      --hud-muted: #8D95A6;
+      --pb: #9D86D6;
+      --marker: #151A22;
+      --marker-ink: #E8EBF1;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+    }
+    :root[data-track="monaco"]:not([data-theme="light"]) {
+      --ground: #1E1C18; --ground-2: #24211C; --deco1: #7C4535; --deco2: #6A3A2C; --deco3: #9FB7CC;
+      --water: #0E2638; --water-2: #16384F; --yacht: #D7DCE2; --runoff: #2A2926;
+    }
+    :root[data-track="monza"]:not([data-theme="light"]) {
+      --ground: #0D1710; --ground-2: #111F15; --deco1: #1E3A23; --deco2: #28492D; --deco3: #E0485C;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --paper: #0C0F14;
+    --panel: #151A22;
+    --ink: #E8EBF1;
+    --muted: #98A0B1;
+    --line: #262D39;
+    --ground: #0F1A14;
+    --ground-2: #121F18;
+    --deco1: #6E4453;
+    --deco2: #86526A;
+    --deco3: #E0485C;
+    --water: #0E2638;
+    --water-2: #16384F;
+    --yacht: #D7DCE2;
+    --runoff: #22262C;
+    --edge: #F4F4F0;
+    --asphalt: #454A56;
+    --kerb: #E03A4E;
+    --mark: #E3B665;
+    --mark-text: #E3B665;
+    --car: #E3B665;
+    --car-trim: #0C0F14;
+    --strip: #05070A;
+    --strip-ink: #FFFFFF;
+    --hud: rgba(5, 7, 10, 0.92);
+    --hud-ink: #FFFFFF;
+    --hud-muted: #8D95A6;
+    --pb: #9D86D6;
+    --marker: #151A22;
+    --marker-ink: #E8EBF1;
+    --shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+  }
+  :root[data-track="monaco"][data-theme="dark"] {
+    --ground: #1E1C18; --ground-2: #24211C; --deco1: #7C4535; --deco2: #6A3A2C; --deco3: #9FB7CC;
+    --water: #0E2638; --water-2: #16384F; --yacht: #D7DCE2; --runoff: #2A2926;
+  }
+  :root[data-track="monza"][data-theme="dark"] {
+    --ground: #0D1710; --ground-2: #111F15; --deco1: #1E3A23; --deco2: #28492D; --deco3: #E0485C;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1rem;
+    line-height: 1.58;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration-color: var(--mark); text-underline-offset: 3px; text-decoration-thickness: 2px; }
+  a:hover { color: var(--mark-text); }
+  :focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+  button { font: inherit; }
+
+  /* ---------------- M&M loader ---------------- */
+  .loader {
+    position: fixed; inset: 0; z-index: 50; background: #14161D; color: #FFFFFF;
+    display: grid; place-items: center; overflow: hidden; cursor: pointer;
+    clip-path: inset(0 0 0 0); transition: clip-path .75s cubic-bezier(.7,0,.2,1);
+  }
+  .loader.done { clip-path: inset(0 0 100% 0); }
+  .loader .candies { position: absolute; inset: 0; pointer-events: none; }
+  .candy {
+    position: absolute; top: -60px; width: 38px; height: 34px; border-radius: 50%;
+    display: grid; place-items: center; color: #FFFFFF;
+    font-family: var(--display); font-weight: 900; font-size: 1.05rem; line-height: 1;
+    box-shadow: inset -4px -5px 0 rgba(0,0,0,.18), inset 3px 3px 0 rgba(255,255,255,.28);
+    animation: fall var(--dur) cubic-bezier(.35,.05,.6,1) var(--delay) forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); }
+    80% { transform: translateY(calc(100vh + 40px - var(--rest))) rotate(var(--spin)); }
+    90% { transform: translateY(calc(100vh + 28px - var(--rest))) rotate(var(--spin)); }
+    100% { transform: translateY(calc(100vh + 40px - var(--rest))) rotate(var(--spin)); }
+  }
+  .lcenter { position: relative; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; padding-inline: 16px; }
+  .lmark { font-family: var(--display); font-weight: 900; font-size: clamp(5.5rem, 21vw, 15rem); line-height: .82; letter-spacing: -.02em; display: flex; align-items: baseline; }
+  .lmark span { display: inline-block; animation: pop .6s cubic-bezier(.2,1.4,.4,1) both; }
+  .lmark .amp { color: #F2A93B; font-size: .62em; margin-inline: .06em; animation-delay: .12s; }
+  .lmark .m2 { animation-delay: .24s; }
+  @keyframes pop { from { transform: translateY(40%) scale(.7); opacity: 0; } to { transform: none; opacity: 1; } }
+  .lsub { font-family: var(--mono); font-size: .78rem; letter-spacing: .3em; text-transform: uppercase; color: #A3A9B8; margin: 0; }
+  .lbar { width: min(320px, 70vw); height: 4px; background: rgba(255,255,255,.12); }
+  .lbar i { display: block; height: 100%; width: 0; background: #F2A93B; }
+  .lcount { font-family: var(--display); font-weight: 900; font-size: 1.1rem; font-variant-numeric: tabular-nums; letter-spacing: .08em; }
+  .lskip { position: absolute; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); left: 50%; transform: translateX(-50%); font-family: var(--mono); font-size: .66rem; letter-spacing: .14em; text-transform: uppercase; color: #6F7686; }
+
+  /* ---------------- stage ---------------- */
+  .stage { position: fixed; inset: 0; overflow: hidden; background: var(--ground); }
+  .runway { pointer-events: none; }
+  #track, #wires { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #wires { pointer-events: none; z-index: 1; }
+  #track .g1 { fill: var(--ground); }
+  #track .g2 { fill: var(--ground-2); }
+  #track .d1 { fill: var(--deco1); }
+  #track .d2 { fill: var(--deco2); }
+  #track .d3 { fill: var(--deco3); }
+  #track .petal { fill: var(--deco1); opacity: .8; }
+  #track .fw { fill: none; stroke: var(--deco3); stroke-width: 2.5; }
+  #track .fw-thin { fill: none; stroke: var(--deco3); stroke-width: 1; opacity: .7; }
+  #track .water { fill: var(--water); }
+  #track .wave { fill: none; stroke: var(--water-2); stroke-width: 2; stroke-linecap: round; }
+  #track .yacht { fill: var(--yacht); }
+  #track .deck { fill: var(--deco3); }
+  #track .flag-g { fill: #1B9E4B; } #track .flag-w { fill: #FFFFFF; } #track .flag-r { fill: #CE2B37; }
+  #track path.track-line { fill: none; stroke-linejoin: round; stroke-linecap: round; }
+  #track .runoff { stroke: var(--runoff); stroke-width: 46; }
+  #track .kerb-w path { fill: none; stroke: #FFFFFF; stroke-width: 31; stroke-linecap: butt; stroke-linejoin: round; }
+  #track .kerb-r path { fill: none; stroke: var(--kerb); stroke-width: 31; stroke-dasharray: 5 5; stroke-linecap: butt; stroke-linejoin: round; }
+  #track .edge { stroke: var(--edge); stroke-width: 24; }
+  #track .asphalt { stroke: var(--asphalt); stroke-width: 20; }
+  #track .drive { stroke: var(--mark); stroke-width: 3.5; }
+  #track .bridge path { fill: none; stroke-linecap: butt; stroke-linejoin: round; }
+  #track .bridge .shadow { stroke: #000; stroke-opacity: .28; stroke-width: 40; }
+  #track .bridge .deck-b { stroke: var(--edge); stroke-width: 28; }
+  #track .sl-b { stroke: #111; stroke-width: 5; }
+  #track .sl-w { stroke: #fff; stroke-width: 5; stroke-dasharray: 2.5 2.5; }
+  #track .leader { stroke: var(--marker-ink); stroke-opacity: .35; stroke-width: 1.2; }
+  #track .mk { cursor: pointer; }
+  #track .mk circle { fill: var(--marker); stroke: var(--marker-ink); stroke-width: 1.5; transition: fill .25s; }
+  #track .mk .ring { fill: none; stroke: var(--mark); stroke-width: 2.5; opacity: 0; }
+  #track .mk.on .ring { animation: ping 1.6s ease-out infinite; }
+  @keyframes ping { 0% { opacity: .9; r: 12; } 100% { opacity: 0; r: 30; } }
+  #track .mk text { font-family: var(--mono); font-weight: 700; font-size: 11px; text-anchor: middle; fill: var(--marker-ink); pointer-events: none; }
+  #track .mk.done circle:not(.ring) { fill: var(--pb); stroke: var(--pb); }
+  #track .mk.done text { fill: #fff; }
+  #track .mk.on circle:not(.ring) { fill: var(--mark); stroke: var(--car-trim); }
+  #track .mk.on text { fill: #14161D; }
+  #track .mk:hover circle:not(.ring), #track .mk:focus-visible circle:not(.ring) { stroke-width: 3; }
+  #track .mk:focus { outline: none; }
+  #track .clabel {
+    font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: .08em;
+    text-transform: uppercase; fill: var(--ink);
+    paint-order: stroke; stroke: var(--ground); stroke-width: 5px; stroke-linejoin: round;
+  }
+  #car .body { fill: var(--car); }
+  #car .trim { fill: var(--car-trim); }
+  #car .tyre { fill: #0A0A0A; }
+  #wires line { stroke: var(--mark); stroke-width: 2; stroke-dasharray: 4 4; }
+  #wires circle { fill: var(--mark); }
+  #wires g { transition: opacity .25s; }
+
+  /* HUD */
+  .hud-top {
+    position: absolute; z-index: 4;
+    top: calc(12px + env(safe-area-inset-top, 0px)); left: 16px; right: 16px;
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap;
+  }
+  .picker { display: flex; background: var(--hud); padding: 4px; gap: 2px; }
+  .picker button {
+    font-family: var(--display); font-weight: 700; font-size: .8rem; letter-spacing: .1em; text-transform: uppercase;
+    background: transparent; color: var(--hud-muted); border: 0; padding: 7px 12px; cursor: pointer;
+  }
+  .picker button:hover { color: var(--hud-ink); }
+  .picker button[aria-pressed="true"] { background: var(--mark); color: #14161D; }
+  .tower { display: flex; background: var(--hud); color: var(--hud-ink); font-family: var(--mono); font-size: .7rem; }
+  .tower > div { display: flex; align-items: center; gap: 8px; padding: 7px 12px; }
+  .tower > div + div { border-left: 1px solid rgba(255,255,255,.09); }
+  .tower .drv { font-family: var(--display); font-weight: 900; font-size: .95rem; letter-spacing: .06em; }
+  .tower .drv b { color: var(--mark); }
+  .tower .lab { color: var(--hud-muted); font-size: .66rem; letter-spacing: .08em; }
+  .tower .cor { min-width: 220px; }
+  .tower .corner { font-family: var(--display); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: .03em; white-space: nowrap; }
+  .tower .speed { font-family: var(--display); font-weight: 900; font-size: 1.35rem; line-height: 1; font-variant-numeric: tabular-nums; min-width: 3ch; text-align: right; }
+  .tower .gear { font-family: var(--display); font-weight: 900; font-size: 1.35rem; line-height: 1; color: var(--mark); min-width: 1ch; }
+  .sectors { display: flex; gap: 3px; }
+  .sectors i { display: block; width: 30px; height: 5px; background: rgba(255,255,255,.14); position: relative; overflow: hidden; }
+  .sectors i::after { content: ""; position: absolute; inset: 0; width: var(--f, 0%); background: var(--mark); }
+  .sectors i.pb::after { background: var(--pb); }
+
+  .hud-bot {
+    position: absolute; z-index: 4;
+    left: 16px; right: 16px; bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    display: flex; align-items: flex-end; gap: 12px;
+  }
+  .circuit { background: var(--hud); color: var(--hud-ink); padding: 7px 12px; font-family: var(--mono); font-size: .66rem; letter-spacing: .04em; white-space: nowrap; }
+  .circuit b { font-family: var(--display); font-size: .86rem; letter-spacing: .04em; display: block; font-weight: 700; }
+  .lapbar { flex: 1; display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 3px; min-width: 0; max-width: 720px; margin-left: auto; }
+  .lapbar button {
+    height: 30px; border: 0; cursor: pointer; background: var(--hud); color: var(--hud-muted);
+    font-family: var(--display); font-size: .82rem; font-weight: 600; font-variant-numeric: tabular-nums;
+    display: flex; align-items: center; justify-content: center; padding: 0;
+  }
+  .lapbar button:hover { color: var(--hud-ink); }
+  .lapbar button.done { color: var(--hud-ink); box-shadow: inset 0 -3px 0 var(--pb); }
+  .lapbar button.on { background: var(--mark); color: #14161D; }
+  .scrollhint {
+    position: absolute; z-index: 4; left: 50%; bottom: calc(58px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%);
+    font-family: var(--mono); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase;
+    background: var(--hud); color: var(--hud-ink); padding: 7px 12px; transition: opacity .3s;
+    display: flex; gap: 8px; align-items: center;
+  }
+  .scrollhint b { color: var(--mark); display: inline-block; animation: nudge 1.4s ease-in-out infinite; }
+  @keyframes nudge { 50% { transform: translateY(3px); } }
+  .scrollhint.gone { opacity: 0; }
+
+  /* ---------------- pop-up cards ---------------- */
+  .popzone {
+    position: absolute; z-index: 3; pointer-events: none;
+    top: calc(70px + env(safe-area-inset-top, 0px)); bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+    left: max(16px, 2.5vw); right: max(16px, 2.5vw);
+    display: grid; align-items: center;
+  }
+  .pop {
+    grid-area: 1 / 1; width: min(470px, 42vw); max-height: 100%; overflow: auto; overscroll-behavior: contain;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px; box-shadow: var(--shadow);
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: opacity .22s ease, transform .4s cubic-bezier(.2,.9,.25,1.1), visibility 0s linear .4s;
+  }
+  .pop.right { justify-self: end; transform: translateX(40px) rotate(1.5deg) scale(.96); }
+  .pop.left { justify-self: start; transform: translateX(-40px) rotate(-1.5deg) scale(.96); }
+  .pop.show {
+    opacity: 1; visibility: visible; pointer-events: auto; transform: none;
+    transition: opacity .22s ease, transform .45s cubic-bezier(.2,.9,.25,1.1), visibility 0s;
+  }
+  .pop .body > * { transition: opacity .35s ease, transform .45s ease; }
+  .pop:not(.show) .body > * { opacity: 0; transform: translateY(8px); }
+  .pop.show .body > *:nth-child(2) { transition-delay: .05s; }
+  .pop.show .body > *:nth-child(3) { transition-delay: .1s; }
+  .pop.show .body > *:nth-child(4) { transition-delay: .15s; }
+  .pop.show .body > *:nth-child(n+5) { transition-delay: .2s; }
+
+  .strip {
+    position: sticky; top: 0; z-index: 1;
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    background: var(--strip); color: var(--strip-ink);
+    font-family: var(--mono); font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    padding: 7px 16px;
+  }
+  .strip .l { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .strip .tn { background: var(--mark); color: #14161D; font-weight: 700; padding: 1px 6px; }
+  .strip .cn { font-family: var(--display); font-weight: 700; font-size: .85rem; letter-spacing: .08em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .strip .sec { color: #A3A9B8; white-space: nowrap; }
+  .body { padding: 26px 26px 22px; display: flex; flex-direction: column; gap: 14px; }
+  .body p { margin: 0; max-width: 62ch; }
+  .kicker { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--mark-text); }
+  h2 {
+    font-family: var(--body); font-weight: 600; font-size: clamp(1.35rem, 2vw, 1.65rem);
+    line-height: 1.18; letter-spacing: -.012em; margin: 0; text-wrap: balance;
+  }
+  .meta { font-family: var(--mono); font-size: .7rem; color: var(--muted); }
+  .body > .meta { margin-top: -8px; }
+  .stat { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .stat b { font-family: var(--body); font-weight: 600; font-size: 2.3rem; line-height: 1; letter-spacing: -.01em; font-variant-numeric: tabular-nums; }
+  .stat span { font-family: var(--mono); font-size: .68rem; color: var(--muted); letter-spacing: .04em; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; margin: 0; padding: 0; }
+  .tags li { font-family: var(--mono); font-size: .64rem; padding: 3px 8px; border: 1px solid var(--line); color: var(--muted); }
+  .sub { border-top: 1px solid var(--line); padding-top: 12px; display: flex; flex-direction: column; gap: 5px; }
+  .sub h3 { font-family: var(--body); font-weight: 600; font-size: 1.04rem; margin: 0; line-height: 1.25; }
+  .sub p { font-size: .95rem; }
+  .sub .meta { margin-top: -3px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 20px; }
+  .grid2 h3 { font-family: var(--mono); font-weight: 500; font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mark-text); margin: 0 0 3px; }
+  .grid2 p { font-size: .94rem; }
+  .roster { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+  .roster li { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-block: 5px; border-bottom: 1px dashed var(--line); font-size: .93rem; }
+  .roster li:last-child { border-bottom: 0; }
+  .roster b { font-weight: 600; }
+  .roster span { font-family: var(--mono); font-size: .66rem; color: var(--muted); text-align: right; }
+  .figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; border-block: 1px solid var(--line); padding-block: 10px; }
+  .figs div { display: flex; flex-direction: column; gap: 2px; }
+  .figs b { font-family: var(--body); font-weight: 600; font-size: 1.35rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .figs span { font-family: var(--mono); font-size: .6rem; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+  .motto { font-family: var(--body); font-style: italic; font-size: 1.12rem; border-left: 3px solid var(--mark); padding-left: 12px; }
+
+  .hero-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+  .hero-head h1 {
+    font-family: var(--body); font-weight: 600; font-size: clamp(2.4rem, 4.2vw, 3.3rem);
+    line-height: .98; letter-spacing: -.025em; margin: 0;
+  }
+  .hero-head h1 span { display: block; }
+  .num {
+    font-family: var(--display); font-weight: 900; font-size: clamp(3rem, 6vw, 4.6rem); line-height: .8;
+    color: transparent; -webkit-text-stroke: 1.25px var(--mark-text); font-variant-numeric: tabular-nums; font-weight: 700;
+  }
+  .keyfigs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); margin: 0; border-block: 1px solid var(--line); }
+  .keyfigs div { display: flex; flex-direction: column; gap: 2px; padding: 12px 10px 12px 0; }
+  .keyfigs div + div { padding-left: 12px; border-left: 1px solid var(--line); }
+  .keyfigs dt { font-family: var(--mono); font-size: .58rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .keyfigs dd { margin: 0; font-family: var(--body); font-weight: 600; font-size: 1.45rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .keyfigs span { font-size: .74rem; line-height: 1.35; color: var(--muted); }
+  .driver { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px 18px; border: 1px solid var(--line); padding: 12px 14px; align-items: center; }
+  .ovr { display: flex; flex-direction: column; align-items: center; padding-right: 16px; border-right: 1px solid var(--line); }
+  .ovr b { font-family: var(--display); font-weight: 900; font-size: 2.7rem; line-height: .95; color: var(--mark-text); font-variant-numeric: tabular-nums; }
+  .ovr span { font-family: var(--mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+  .attrs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 16px; margin: 0; }
+  .attrs div { display: flex; flex-direction: column; gap: 2px; }
+  .attrs dt { font-family: var(--mono); font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .attrs dd { margin: 0; display: grid; grid-template-columns: minmax(0, 1fr) 2ch; align-items: center; gap: 8px; }
+  .attrs i { height: 5px; background: linear-gradient(90deg, var(--mark) var(--v), var(--line) var(--v)); }
+  .attrs b { font-family: var(--display); font-weight: 700; font-size: .92rem; font-variant-numeric: tabular-nums; text-align: right; }
+  .dfoot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 4px 14px; padding-top: 9px; border-top: 1px solid var(--line); font-family: var(--mono); font-size: .64rem; color: var(--muted); letter-spacing: .04em; }
+  .body .dfoot { max-width: none; }
+  .dfoot b { color: var(--ink); font-weight: 500; }
+  .links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { font-family: var(--display); font-weight: 600; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; text-decoration: none; padding: 7px 13px; border: 1px solid var(--ink); border-radius: 2px; color: var(--ink); }
+  .btn:hover { background: var(--ink); color: var(--panel); }
+  .btn.primary { background: var(--mark); border-color: var(--mark); color: #14161D; }
+  .btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--panel); }
+  .lights { display: flex; gap: 8px; align-items: center; background: var(--strip); padding: 9px 12px; width: max-content; max-width: 100%; }
+  .lights i { width: 18px; height: 18px; border-radius: 50%; background: #2A2E36; transition: background .1s, box-shadow .1s; }
+  .lights i.lit { background: #E8212E; box-shadow: 0 0 12px #E8212E; }
+  .lights span { font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; color: #FFFFFF; text-transform: uppercase; margin-left: 6px; }
+  .radio { background: var(--strip); color: var(--strip-ink); padding: 13px 15px; font-family: var(--mono); font-size: .78rem; display: flex; flex-direction: column; gap: 6px; }
+  .radio .who { color: var(--mark); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; }
+  .big { font-family: var(--display); font-weight: 700; font-size: clamp(1.15rem, 2.2vw, 1.5rem); word-break: break-word; }
+  .chequer { height: 12px; background: repeating-conic-gradient(var(--ink) 0 25%, var(--panel) 0 50%) 0 0 / 12px 12px; }
+  .foot { font-family: var(--mono); font-size: .66rem; color: var(--muted); }
+
+  /* bookshelf */
+  .pile { display: flex; flex-direction: column; align-items: center; padding-top: 6px; }
+  .bk {
+    width: var(--w); background: var(--c); color: var(--t, #FFFFFF); transform: translateX(var(--x, 0));
+    display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 8px 12px;
+    border-radius: 2px; box-shadow: inset 0 -3px 0 rgba(0,0,0,.18); position: relative;
+  }
+  .bk b { font-family: var(--body); font-weight: 600; font-size: .86rem; line-height: 1.2; }
+  .bk span { font-family: var(--mono); font-size: .58rem; letter-spacing: .06em; text-transform: uppercase; opacity: .85; white-space: nowrap; }
+  .bk.now::after {
+    content: "Reading now"; position: absolute; right: 14px; top: -16px;
+    background: var(--mark); color: #14161D; font-family: var(--mono); font-size: .56rem; font-weight: 700;
+    letter-spacing: .08em; text-transform: uppercase; padding: 2px 6px;
+  }
+  .shelf { width: 100%; height: 6px; background: var(--muted); opacity: .5; }
+  .quote { font-style: italic; color: var(--muted); font-size: .95rem; }
+
+  /* fun facts */
+  .facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .fact { border: 1px solid var(--line); padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .fact .art { height: 34px; display: flex; align-items: center; gap: 5px; }
+  .fact h3 { font-family: var(--mono); font-weight: 500; font-size: .62rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mark-text); margin: 0; }
+  .fact p { font-size: .92rem; line-height: 1.45; }
+  .mm { width: 26px; height: 23px; border-radius: 50%; display: grid; place-items: center; color: #FFFFFF; font-family: var(--display); font-weight: 900; font-size: .78rem; box-shadow: inset -2px -3px 0 rgba(0,0,0,.18); }
+  .route { font-family: var(--display); font-weight: 900; font-size: 1.3rem; letter-spacing: .04em; }
+  .route i { font-style: normal; color: var(--mark-text); font-size: .9rem; margin-inline: 4px; }
+  .chip { width: 22px; height: 22px; }
+
+  .cardnav { display: flex; justify-content: space-between; gap: 8px; padding: 2px 26px 22px; }
+  .cardnav button {
+    font-family: var(--display); font-weight: 700; font-size: .78rem; letter-spacing: .08em; text-transform: uppercase;
+    background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 2px; padding: 7px 12px; cursor: pointer;
+  }
+  .cardnav button:hover { border-color: var(--ink); }
+  .cardnav .next { background: var(--ink); color: var(--panel); border-color: var(--ink); margin-left: auto; }
+  .cardnav .next:hover { background: var(--mark); border-color: var(--mark); color: #14161D; }
+  .cardnav button[hidden] { display: none; }
+
+  @media (max-width: 760px) {
+    .picker button { padding: 6px 8px; font-size: .7rem; }
+    .tower .drv, .tower .sec-cell, .circuit { display: none; }
+    .tower .cor { min-width: 0; }
+    .tower > div { padding: 6px 9px; }
+    .tower .corner { font-size: .82rem; max-width: 38vw; overflow: hidden; text-overflow: ellipsis; }
+    .tower .speed, .tower .gear { font-size: 1.05rem; }
+    .lapbar button { height: 26px; font-size: .72rem; }
+    .popzone { top: auto; height: min(56dvh, 560px); left: 10px; right: 10px; bottom: calc(46px + env(safe-area-inset-bottom, 0px)); align-items: end; }
+    .pop, .pop.right, .pop.left { width: 100%; justify-self: stretch; transform: translateY(40px) scale(.98); }
+    .pop.show { transform: none; }
+    .scrollhint { bottom: auto; top: calc(62px + env(safe-area-inset-top, 0px)); }
+  }
+  @media (max-width: 520px) {
+    .grid2, .figs, .attrs, .facts { grid-template-columns: minmax(0, 1fr); }
+    .keyfigs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .keyfigs div:nth-child(3) { padding-left: 0; border-left: 0; }
+    .keyfigs div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .driver { grid-template-columns: minmax(0, 1fr); }
+    .ovr { flex-direction: row; gap: 10px; align-items: baseline; padding: 0 0 8px; border-right: 0; border-bottom: 1px solid var(--line); }
+    .body { padding: 18px 16px 16px; }
+    .cardnav { padding: 0 16px 16px; }
+    .strip .sec { display: none; }
+    .bk { width: 100% !important; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pop, .pop.show, .pop .body > * { transition: none !important; }
+    #track .mk.on .ring, .scrollhint b { animation: none; }
+  }
+</style>
+
+</head>
+<body>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="candies" id="candies"></div>
+  <div class="lcenter">
+    <div class="lmark"><span class="m1">M</span><span class="amp">&amp;</span><span class="m2">M</span></div>
+    <p class="lsub">Maitree Mody</p>
+    <div class="lbar"><i id="lfill"></i></div>
+    <span class="lcount" id="lcount">000</span>
+  </div>
+  <span class="lskip">Click to skip</span>
+</div>
+
+<div class="stage" id="stage">
+  <svg id="track" role="img" aria-label="Circuit map. Numbered markers are corners; each one opens a section of the page."></svg>
+  <svg id="wires" aria-hidden="true"><g id="wire" style="opacity:0"><line id="wireLine"/><circle id="wireDot" r="4"/></g></svg>
+
+  <div class="popzone" id="popzone">
+    <!-- 01 intro -->
+    <article class="pop" id="grid">
+      <div class="strip"><span class="l"><span class="tn">01</span><span class="cn">Lights Out Lane</span></span><span class="sec">Pole Position</span></div>
+      <div class="body">
+        <p class="kicker">Born in New York · raised in Mumbai · Barnard College, Columbia University</p>
+        <div class="hero-head">
+          <h1><span>Maitree</span><span>Mody</span></h1>
+          <span class="num" aria-label="Car number 29, for the class of 2029">29</span>
+        </div>
+        <p>I study Economics and Computer Science, and I'm working toward a career in investment management. I'm most drawn to asset management with a global macro lens: how a central bank's rate decision moves through markets and ends up in someone's portfolio. This fall I join New York Bay Capital as an investment banking intern.</p>
+        <dl class="keyfigs" aria-label="Key figures">
+          <div><dt>GPA</dt><dd>4.08</dd><span>Dean's List, every semester</span></div>
+          <div><dt>Laidlaw</dt><dd>1 of 20</dd><span>Barnard Scholars cohort</span></div>
+          <div><dt>Macro data</dt><dd>20+ yrs</dd><span>analyzed at Union Bank of India</span></div>
+          <div><dt>Finding</dt><dd>−1.9%</dd><span>housing credit per 1% policy-rate rise</span></div>
+        </dl>
+        <div class="links">
+          <a class="btn primary" href="maitree-mody-resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+          <a class="btn" href="mailto:msm2304@barnard.edu">Email</a>
+          <a class="btn" href="https://linkedin.com/in/maitree-mody" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/maitree-mody" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://milomi.home.blog" target="_blank" rel="noopener">Blog</a>
+        </div>
+        <div class="lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><span id="lightsText">Lights out</span></div>
+      </div>
+    </article>
+
+    <!-- 02 investment management -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">02</span><span class="cn"></span></span><span class="sec">S1 · Race Strategy</span></div>
+      <div class="body">
+        <p class="kicker">Why investment management</p>
+        <h2>Dinner-table rate debates turned into a career plan</h2>
+        <p>I grew up in a business family in Mumbai where interest rates, currencies, international markets and home loans came up over dinner. Those conversations had me following the economy and financial news years before I studied either.</p>
+        <p class="motto">"Ask your own questions, and find your own answers."</p>
+        <p>Today I track earnings, stocks and the major indexes. What excites me most is the bridge between macro conditions and the decisions made inside individual client portfolios.</p>
+        <div class="sub">
+          <h3>New York Bay Capital</h3>
+          <p class="meta">Incoming Investment Banking Intern · Fall 2026</p>
+        </div>
+        <div class="sub">
+          <h3>Waterfield Advisors, Mumbai</h3>
+          <p class="meta">Finance Research Intern at a multi-family office · Mar – Apr 2024</p>
+          <p>I compared five international funds in Morningstar and Bloomberg on performance, portfolio composition and risk for a global client presentation. I researched ten portfolio management services for the investment team and updated the firm's monthly Deployment Planner in Excel, which guides fund allocation for each client. I also saw how advisors handle dual tax obligations for non-resident Indians.</p>
+        </div>
+        <div class="sub">
+          <h3>Pitches and clubs</h3>
+          <p>I deliver stock pitches for Alpha Kappa Psi and built a financial literacy pitch deck as a Financial Planning Analyst at Columbia Wealth Management Club. I'm also Treasurer of Columbia Lioness Quant and a member of Barnard Investment Group.</p>
+        </div>
+        <ul class="tags"><li>Asset management</li><li>Global macro</li><li>Investment banking</li><li>Excel</li><li>Morningstar</li><li>Bloomberg</li></ul>
+      </div>
+    </article>
+
+    <!-- 03 monetary policy -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">03</span><span class="cn"></span></span><span class="sec">S1 · Wind Tunnel</span></div>
+      <div class="body">
+        <p class="kicker">Monetary policy research</p>
+        <h2>How a repo rate change reaches housing credit</h2>
+        <p class="meta">Barnard Laidlaw Scholars Program · May 2026 – present</p>
+        <div class="stat"><b>−1.9%</b><span>housing credit for every 1% rise in the policy rate</span></div>
+        <p>As one of 20 Barnard Laidlaw Scholars, I study how RBI rate changes pass through banks and credit markets into India's housing lending, with a faculty mentor. I built a 13-year panel of 36 states and 91 banks and ran fixed-effects regressions and a heterogeneity analysis in Stata. The effect is statistically significant mainly in less financially developed states. I've submitted the paper to the Laidlaw Foundation and will present it at Barnard's research symposium.</p>
+        <div class="sub">
+          <h3>Union Bank of India, Mumbai</h3>
+          <p class="meta">Banking &amp; Economics Research Intern · Jun – Aug 2025</p>
+          <p>Working under the Chief Economic Advisor of India's fifth-largest public sector bank, I tracked the repo rate cycle against credit growth and GDP across 20+ years of data. My findings on policy transmission were credited in a published UBI report. Specialists in credit, FX and equities taught me to follow global markets and policy shifts.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 04 data -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">04</span><span class="cn"></span></span><span class="sec">S1 · Telemetry</span></div>
+      <div class="body">
+        <p class="kicker">Research assistant</p>
+        <h2>Messy public data, turned into something you can model</h2>
+        <div class="stat"><b>~7.5M</b><span>observations across 40+ states, 2013–2024</span></div>
+        <div class="sub">
+          <h3>Economics Department, Barnard</h3>
+          <p class="meta">Research Assistant · Jan 2026 – present</p>
+          <p>I assemble school-level chronic absenteeism data and build Stata workflows that merge state datasets, normalize inconsistent demographic subgroups and flag missing, suppressed and duplicate records.</p>
+        </div>
+        <div class="sub">
+          <h3>Prof. C. Behl, Delhi</h3>
+          <p class="meta">Economics Research Assistant · Sep – Nov 2024</p>
+          <p>I studied pre-sales versus spot sales in India's housing market using 15+ years of data, RERA 2016 and case studies on project delays, and surveyed 20+ developers and buyers.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 05 humor project -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">05</span><span class="cn"></span></span><span class="sec">S2 · Radio Check</span></div>
+      <div class="body">
+        <p class="kicker">Student Brain, Columbia · Topic Extraction team</p>
+        <h2>A failed experiment that became a production pipeline</h2>
+        <p class="meta">Research Assistant · Jun 2026 – present</p>
+        <div class="stat"><b>67.7%</b><span>F1 score at 86.4% precision, 198 posts</span></div>
+        <p>I compared four scoring-based clustering methods for a humor-generation pipeline. My approach missed a whole topic, but it split that topic into distinct, coherent sub-narratives instead.</p>
+        <p>That accident became a sub-theme detection pipeline I built end to end. It labels post clusters within topics using cosine similarity and an LLM, and it's now in production, improving topic clustering and joke generation.</p>
+        <ul class="tags"><li>TypeScript</li><li>Supabase</li><li>pgvector</li><li>OpenAI embeddings</li></ul>
+      </div>
+    </article>
+
+    <!-- 06 butler bets -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">06</span><span class="cn"></span></span><span class="sec">S2 · Full Throttle</span></div>
+      <div class="body">
+        <p class="kicker">Co-founder &amp; builder · Jun 2026 – present</p>
+        <h2>Butler Bets, a prediction market for campus</h2>
+        <p>A play-money prediction market for Columbia and Barnard students. I worked on the LMSR market maker, trade execution, admin resolution and the leaderboard.</p>
+        <p>Every new market goes through a Gemini Flash review step. It returns a structured verdict and suggests a rewrite when a question is unclear.</p>
+        <ul class="tags"><li>Next.js</li><li>TypeScript</li><li>Supabase</li><li>Vercel</li><li>Gemini</li></ul>
+      </div>
+    </article>
+
+    <!-- 07 brokerbotics + elements -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">07</span><span class="cn"></span></span><span class="sec">S2 · The Garage</span></div>
+      <div class="body">
+        <p class="kicker">Shipping software for fintech and real estate</p>
+        <h2>Two weeks, 34 code changes, one black screen gone</h2>
+        <div class="sub">
+          <h3>Brokerbotics</h3>
+          <p class="meta">Software Engineering Intern · Jul 2026 – present</p>
+          <p>My first software engineering internship came with a big job: ship an AI investment research platform to the iOS App Store. Users could log in but got stuck on a black loading screen. I compared web and mobile, local and TestFlight builds, until I found a networking setting blocking the app's requests. The app now runs on TestFlight, and I'm still working remotely on its App Store submission.</p>
+          <ul class="tags"><li>iOS</li><li>Xcode</li><li>Auth0</li><li>TestFlight</li><li>GitHub Actions</li></ul>
+        </div>
+        <div class="sub">
+          <h3>Elements Realty document platform</h3>
+          <p class="meta">Full-Stack Intern, Mumbai · Jul 2026 – present</p>
+          <p>A platform that generates flat sale agreements from templates for a Mumbai developer, with OTP login, role-based access and per-flat document isolation. When the client asked, I replaced SharePoint with the Google Drive API, which brought infrastructure cost to $0 a month.</p>
+          <ul class="tags"><li>Next.js</li><li>Prisma</li><li>PostgreSQL</li><li>Drive API</li></ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- 08 teaching + writing -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">08</span><span class="cn"></span></span><span class="sec">S3 · Race Engineer</span></div>
+      <div class="body">
+        <p class="kicker">Classroom and newsroom</p>
+        <h2>Teaching Java, editing sports, writing on economics</h2>
+        <div class="sub">
+          <h3>Teaching Assistant, Columbia Computer Science</h3>
+          <p class="meta">COMS 1004 · Jan 2026 – present</p>
+          <p>I was selected to return for a second semester as a TA for Intro to Computer Science in Java. I hold weekly office hours for a class of 255, teach foundational concepts and grade 100+ assignments a week.</p>
+        </div>
+        <div class="sub">
+          <h3>Deputy Editor, Health &amp; Sports, Barnard Bulletin</h3>
+          <p class="meta">Sep 2025 – present</p>
+          <p>I edit 1,000+ word features, lead ten staff writers and cover Columbia women's soccer and basketball, with 10+ interviews of athletes, coaches and students.</p>
+        </div>
+        <div class="sub">
+          <h3>Staff Writer, Columbia Economics Review</h3>
+          <p>I write on economics for Columbia's undergraduate economics publication.</p>
+        </div>
+        <div class="sub">
+          <h3>Student Leader, TED-Ed Clubs JNS</h3>
+          <p class="meta">Mumbai · Jul 2022 – Apr 2025</p>
+          <p>I mentored 24 students as they wrote their own talks and gave two talks to 600+ people, one on translated literature and one on asking questions in calculus.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- 09 project rang -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">09</span><span class="cn"></span></span><span class="sec">S3 · Team Principal</span></div>
+      <div class="body">
+        <p class="kicker">Service Above Self · "Rang" means colour in Hindi</p>
+        <h2>Project Rang: showing girls what their art is worth</h2>
+        <p class="meta">Interact Club of Mumbai Jewels · Charter President, later Mentor · from 2021</p>
+        <div class="stat"><b>70+</b><span>girls at an orphanage given art supplies</span></div>
+        <p>I chartered the club in 2021 and started Project Rang to help girls at an orphanage feel proud of their art. My team organized an event where more than 70 girls got art supplies and made paintings of their own.</p>
+        <p>We sold the paintings to friends, family and people in our community. Each one came with a short introduction to the girl who painted it, so every purchase felt personal. The proceeds and donations bought the orphanage two refrigerators.</p>
+      </div>
+    </article>
+
+    <!-- 10 weave + campus -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">10</span><span class="cn"></span></span><span class="sec">S3 · Feeder Series</span></div>
+      <div class="body">
+        <p class="kicker">Family business and campus life</p>
+        <h2>200 handwoven baskets and a very full calendar</h2>
+        <div class="figs">
+          <div><b>4.08</b><span>GPA · Dean's List</span></div>
+          <div><b>2029</b><span>B.A. Econ &amp; CS</span></div>
+          <div><b>200+</b><span>Baskets sold</span></div>
+        </div>
+        <div class="sub">
+          <h3>Weave, Mumbai</h3>
+          <p class="meta">Marketing &amp; Sales · Jun – Aug 2024</p>
+          <p>In my family, women are encouraged to be financially independent. My mother started Weave, which imports baskets handwoven by women in Africa and sells them in India. I ran the brand's social media and told the weavers' stories, lifting viewership 20% and conversion 15%. At one of Mumbai's largest exhibitions, with 17,000+ visitors, I ran the booth and sold a record 200+ baskets.</p>
+        </div>
+        <div class="sub">
+          <h3>On campus now</h3>
+          <ul class="roster">
+            <li><b>Columbia Wealth Management Club</b><span>Financial Planning Analyst</span></li>
+            <li><b>Columbia Lioness Quant</b><span>Treasurer</span></li>
+            <li><b>Columbia Economics Review</b><span>Staff Writer</span></li>
+            <li><b>Barnard Bulletin</b><span>Deputy Editor, Health &amp; Sports</span></li>
+            <li><b>Alpha Kappa Psi</b><span>Member</span></li>
+            <li><b>Application Development Initiative</b><span>Member</span></li>
+            <li><b>Barnard Investment Group</b><span>Member</span></li>
+          </ul>
+        </div>
+        <div class="sub">
+          <h3>Coursework</h3>
+          <ul class="tags"><li>Calculus III</li><li>Intermediate Microeconomics</li><li>Calculus-Based Statistics</li><li>Data Structures &amp; Algorithms</li></ul>
+        </div>
+      </div>
+    </article>
+
+    <!-- 11 books, writing, guitar, f1 -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">11</span><span class="cn"></span></span><span class="sec">S3 · The Paddock</span></div>
+      <div class="body">
+        <p class="kicker">Off the clock</p>
+        <h2>Books, poems, guitar and race weekends</h2>
+        <div class="pile" aria-label="Favourite books">
+          <div class="bk now" style="--w:78%;--c:#8C3B5E;--x:-4%"><b>Women of the Silk</b><span>Gail Tsukiyama</span></div>
+          <div class="bk" style="--w:90%;--c:#D94F2B;--x:3%"><b>Enshittification</b><span>Cory Doctorow</span></div>
+          <div class="bk" style="--w:96%;--c:#7A4E2D;--x:-2%"><b>The Island of Missing Trees</b><span>Elif Shafak</span></div>
+          <div class="bk" style="--w:100%;--c:#E3B53C;--t:#14161D;--x:1%"><b>The Housekeeper and the Professor</b><span>Yoko Ogawa</span></div>
+          <div class="bk" style="--w:92%;--c:#2F5D3A;--x:-1%"><b>Norwegian Wood</b><span>Haruki Murakami</span></div>
+          <div class="shelf"></div>
+        </div>
+        <p>I read anything by Haruki Murakami, starting with Norwegian Wood. The Housekeeper and the Professor is my comfort book. Right now I'm reading Women of the Silk.</p>
+        <div class="grid2">
+          <div><h3>Writing</h3><p>Since 2019 I've published poems, musings and short articles under a pen name on <a href="https://milomi.home.blog" target="_blank" rel="noopener">Milomi's world</a>. One day I'd like to publish a poetry collection.</p></div>
+          <div><h3>Guitar</h3><p>I play acoustic guitar in my free time, and I love Hindustani classical music.</p></div>
+          <div><h3>Formula One</h3><p>If the racetrack didn't give it away: I never miss a race weekend.</p></div>
+          <div><h3>Dance</h3><p>Indian folk dance.</p></div>
+        </div>
+        <p class="quote">A friend once told me creativity is an infinite resource: the more you use it, the more there is. I've come to believe it.</p>
+      </div>
+    </article>
+
+    <!-- 12 fun facts -->
+    <article class="pop">
+      <div class="strip"><span class="l"><span class="tn">12</span><span class="cn"></span></span><span class="sec">S3 · Media Pen</span></div>
+      <div class="body">
+        <p class="kicker">Quick-fire questions</p>
+        <h2>Six things about me</h2>
+        <div class="facts">
+          <div class="fact">
+            <div class="art" aria-hidden="true"><span class="mm" style="background:#E4202E">m</span><span class="mm" style="background:#1E73E8">m</span><span class="mm" style="background:#FFB000">m</span><span class="mm" style="background:#17A34A">m</span></div>
+            <h3>Favourite candy</h3><p>M&amp;Ms. They're also my initials, which is why the site opened with them.</p>
+          </div>
+          <div class="fact">
+            <div class="art route" aria-hidden="true">JFK<i>✈</i>BOM</div>
+            <h3>Hometowns</h3><p>Born in New York City, raised in Mumbai.</p>
+          </div>
+          <div class="fact">
+            <div class="art" aria-hidden="true"><span class="chip" style="background:#1F3A93"></span><span class="chip" style="background:#A67B50"></span></div>
+            <h3>Hogwarts house</h3><p>Ravenclaw, obviously.</p>
+          </div>
+          <div class="fact">
+            <div class="art" aria-hidden="true"><span class="chip" style="background:#FF8000"></span><span class="chip" style="background:#1868DB"></span></div>
+            <h3>Teams I support</h3><p>McLaren and Williams.</p>
+          </div>
+          <div class="fact">
+            <div class="art route" aria-hidden="true">Ra</div>
+            <h3>Inspired by</h3><p>Marie Curie, for her relentless curiosity and the doors she opened for women.</p>
+          </div>
+          <div class="fact">
+            <div class="art route" aria-hidden="true">∫ dx</div>
+            <h3>Favourite subject</h3><p>Maths. You can't predict the question, but you can practise until you have the tools.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- 13 contact -->
+    <article class="pop" id="contact">
+      <div class="strip"><span class="l"><span class="tn">13</span><span class="cn"></span></span><span class="sec">Chequered Flag</span></div>
+      <div class="body">
+        <p class="kicker">Pit wall</p>
+        <h2>That's the lap. Let's talk.</h2>
+        <div class="radio">
+          <span class="who">Team radio · MOD</span>
+          <span>"Box, box. I'm looking for opportunities in investment management, research and software. Email is fastest."</span>
+        </div>
+        <p class="big"><a href="mailto:msm2304@barnard.edu">msm2304@barnard.edu</a></p>
+        <div class="links">
+          <a class="btn primary" href="maitree-mody-resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+          <a class="btn" href="https://linkedin.com/in/maitree-mody" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="https://github.com/maitree-mody" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://milomi.home.blog" target="_blank" rel="noopener">Blog</a>
+        </div>
+        <div class="chequer" aria-hidden="true"></div>
+        <p class="foot">© 2026 Maitree Mody · New York &amp; Mumbai</p>
+      </div>
+    </article>
+  </div>
+
+  <div class="hud-top">
+    <div class="picker" role="group" aria-label="Choose a circuit">
+      <button type="button" id="pick-suzuka" data-t="suzuka" aria-pressed="true">Suzuka</button>
+      <button type="button" id="pick-monaco" data-t="monaco" aria-pressed="false">Monaco</button>
+      <button type="button" id="pick-monza" data-t="monza" aria-pressed="false">Monza</button>
+    </div>
+    <div class="tower">
+      <div class="drv">MOD <b>#29</b></div>
+      <div class="cor"><span class="lab" id="hNum">01</span><span class="corner" id="hCorner">Lights Out Lane</span></div>
+      <div><span class="speed" id="hSpeed">0</span><span class="lab">km/h</span><span class="gear" id="hGear">N</span></div>
+      <div class="sec-cell" title="Sectors: Markets, Building, Paddock"><span class="lab">S1 S2 S3</span><span class="sectors" id="sectors"><i></i><i></i><i></i></span></div>
+    </div>
+  </div>
+
+  <div class="scrollhint" id="scrollhint"><b>↓</b> Scroll to drive</div>
+
+  <div class="hud-bot">
+    <div class="circuit"><b id="cName">Suzuka International Racing Course</b><span id="cInfo">Japan · 5.807 km · 18 turns</span></div>
+    <nav class="lapbar" id="lapbar" aria-label="Corners"></nav>
+  </div>
+</div>
+<div class="runway" id="runway"></div>
+
+<script>
+(() => {
+  // Circuit outlines, drawn by hand from the real layouts. Named points are the stops, in lap order.
+  const TRACKS = {
+    suzuka: {
+      full: 'Suzuka International Racing Course', info: 'Japan · 5.807 km · 18 turns', bridge: [26, 27], seed: 7,
+      pts: [[540,562,'Grid'],[650,563],[760,560,'Main Straight'],[860,545,'Turn 1'],[910,500],[900,450],[850,425],[800,405,'S Curves'],[750,420],[700,395],[655,370],[625,320,'Dunlop'],[620,265],[595,228,'Degner'],[545,235],[440,322],[330,420],[280,470,'Hairpin'],[230,465],[215,420],[190,350,'200R'],[160,285],[130,215,'Spoon'],[165,150],[235,160],[270,210,'Spoon Exit'],[355,305],[440,400],[460,440,'130R'],[450,480],[470,500,'Casio Triangle'],[455,520],[480,550,'Pit lane']]
+    },
+    monaco: {
+      full: 'Circuit de Monaco', info: 'Monte Carlo · 3.337 km · 19 turns', seed: 11,
+      pts: [[330,470,'Grid'],[400,445],[460,428],[495,410,'Sainte Dévote'],[510,370],[560,305,'Beau Rivage'],[620,245],[680,195,'Massenet'],[735,185],[775,215,'Casino'],[770,265],[795,310,'Mirabeau'],[840,322],[880,320,'Grand Hotel Hairpin'],[885,360],[850,390],[820,430,'Portier'],[760,480],[680,515,'Tunnel'],[600,535],[545,548],[520,530,'Nouvelle Chicane'],[490,545],[430,560,'Tabac'],[380,540],[350,560,'Piscine'],[310,545],[280,563],[225,570],[200,540,'Rascasse'],[230,508],[280,495]]
+    },
+    monza: {
+      full: 'Autodromo Nazionale Monza', info: 'Italy · 5.793 km · 11 turns', seed: 5,
+      pts: [[640,560,'Grid'],[480,560],[330,560,'Main Straight'],[250,560],[225,540,'Rettifilo'],[200,555],[170,540],[115,480],[100,380,'Curva Grande'],[115,300],[135,260],[160,250,'Roggia'],[150,230],[170,170,'Lesmo 1'],[220,140],[280,140,'Lesmo 2'],[310,170],[400,250,'Serraglio'],[500,330,'Vialone'],[540,360],[560,350,'Ascari'],[590,380],[620,390],[760,400,'Back Straight'],[840,410,'Parabolica'],[890,470],[860,540],[800,560,'Pit lane']]
+    }
+  };
+  // Each stop's nickname, the same on every circuit. The real corner name still shows on hover.
+  const NICKNAMES = ['Lights Out Lane', 'Compound Interest Curve', 'Repo Rate Hairpin', 'Stata Esses', 'Punchline Chicane', 'Butler Bets Bend', 'OAuth Oxbow', 'Office Hours Loop', 'Paintbrush Pass', 'Basket Case Bend', 'Page-Turner Turn', 'Candy Corner', 'Box Box Boulevard'];
+  const SECTORS = [[0, 4], [4, 7], [7, 12]]; // stop ranges: Markets, Building, Paddock
+  const HOLD = 0.45;          // share of each scroll segment spent parked at a corner
+  const SEG_VH = 130;         // scroll distance per corner, in viewport heights
+
+  const $ = id => document.getElementById(id);
+  const svg = $('track');
+  const cards = [...document.querySelectorAll('.pop')];
+  const N = cards.length;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let T, geo, stopLen, stopNames, realNames, marks, bridgeRange, car, drive, bdrive, clabel, world, vb, tc, sides, L;
+  let disp = 0, prevDisp = 0, prevT = performance.now(), speed = 0, shown = -2, lastIdx = -1, cam = null;
+
+  $('runway').style.height = `${(N - 1) * SEG_VH + 100}vh`;
+
+  // ---------- geometry ----------
+  function cr(p0, p1, p2, p3, t) { // centripetal Catmull-Rom: no loops at tight hairpins
+    const d = (p, q) => Math.pow(Math.hypot(q[0] - p[0], q[1] - p[1]), 0.5) || 1e-4;
+    const t0 = 0, t1 = d(p0, p1), t2 = t1 + d(p1, p2), t3 = t2 + d(p2, p3);
+    const u = t1 + (t2 - t1) * t;
+    const Lr = (p, q, a, b) => { const w = (u - a) / (b - a); return [p[0] + (q[0] - p[0]) * w, p[1] + (q[1] - p[1]) * w]; };
+    const A1 = Lr(p0, p1, t0, t1), A2 = Lr(p1, p2, t1, t2), A3 = Lr(p2, p3, t2, t3);
+    return Lr(Lr(A1, A2, t0, t2), Lr(A2, A3, t1, t3), t1, t2);
+  }
+  function build(P) {
+    const n = P.length, poly = [], lens = [], ctrlLen = [];
+    let len = 0;
+    for (let i = 0; i < n; i++) {
+      const p0 = P[(i - 1 + n) % n], p1 = P[i], p2 = P[(i + 1) % n], p3 = P[(i + 2) % n];
+      for (let s = 0; s < 20; s++) {
+        const pt = cr(p0, p1, p2, p3, s / 20);
+        if (poly.length) { const q = poly[poly.length - 1]; len += Math.hypot(pt[0] - q[0], pt[1] - q[1]); }
+        if (s === 0) ctrlLen[i] = len;
+        poly.push(pt); lens.push(len);
+      }
+    }
+    const q = poly[poly.length - 1];
+    len += Math.hypot(poly[0][0] - q[0], poly[0][1] - q[1]);
+    poly.push(poly[0]); lens.push(len);
+    return { poly, lens, ctrlLen, total: len };
+  }
+  function pointAt(l) {
+    const { lens, poly, total } = geo;
+    l = Math.max(0, Math.min(total, l));
+    let lo = 0, hi = lens.length - 1;
+    while (hi - lo > 1) { const m = (lo + hi) >> 1; if (lens[m] <= l) lo = m; else hi = m; }
+    const w = (l - lens[lo]) / ((lens[hi] - lens[lo]) || 1), p = poly[lo], q = poly[hi];
+    return [p[0] + (q[0] - p[0]) * w, p[1] + (q[1] - p[1]) * w, Math.atan2(q[1] - p[1], q[0] - p[0])];
+  }
+  const f1 = v => v.toFixed(1);
+  const dOf = pts => 'M' + pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join(' L');
+  function sub(a, b) {
+    const pts = [pointAt(a)];
+    geo.lens.forEach((l, i) => { if (l > a && l < b) pts.push(geo.poly[i]); });
+    pts.push(pointAt(b));
+    return dOf(pts);
+  }
+  function minDist(x, y) {
+    let m = 1e9;
+    for (let i = 0; i < geo.poly.length; i += 2) { const p = geo.poly[i]; m = Math.min(m, Math.hypot(p[0] - x, p[1] - y)); }
+    return m;
+  }
+
+  // ---------- scenery ----------
+  function rng(seed) {
+    return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+  }
+  function scatter(r, count, gap, spacing, ok = () => true) {
+    const out = [];
+    for (let tries = 0; out.length < count && tries < count * 40; tries++) {
+      const x = vb.x - 300 + r() * (vb.w + 600), y = vb.y - 220 + r() * (vb.h + 440);
+      if (minDist(x, y) < gap || !ok(x, y)) continue;
+      if (marks.some(m => Math.hypot(m.x - x, m.y - y) < 30)) continue;
+      if (out.some(o => Math.hypot(o[0] - x, o[1] - y) < spacing)) continue;
+      out.push([x, y]);
+    }
+    return out;
+  }
+  function tree(x, y, s, a = 'd1', b = 'd2') {
+    return `<g transform="translate(${f1(x)} ${f1(y)}) scale(${s.toFixed(2)})"><circle class="${b}" cx="-4" cy="3" r="8"/><circle class="${a}" cx="4" cy="-1" r="9"/><circle class="${a}" cx="-2" cy="-6" r="6.5"/></g>`;
+  }
+  function scenery(key) {
+    const r = rng(T.seed);
+    let out = '';
+    if (key === 'suzuka') {
+      // Suzuka's Ferris wheel, on open ground near the main straight
+      let best = null;
+      for (let i = 0; i < 400; i++) {
+        const x = vb.x + r() * vb.w, y = vb.y + r() * (vb.h + 160);
+        const d = minDist(x, y);
+        if (d > 78 && (!best || Math.hypot(x - 700, y - 660) < Math.hypot(best[0] - 700, best[1] - 660))) best = [x, y];
+      }
+      if (best) {
+        const [wx, wy] = best, R = 40;
+        let spokes = '', pods = '';
+        for (let i = 0; i < 12; i++) {
+          const a = i / 12 * Math.PI * 2, px = wx + Math.cos(a) * R, py = wy + Math.sin(a) * R;
+          spokes += `<line class="fw-thin" x1="${f1(wx)}" y1="${f1(wy)}" x2="${f1(px)}" y2="${f1(py)}"/>`;
+          pods += `<circle class="${i % 2 ? 'd2' : 'd3'}" cx="${f1(px)}" cy="${f1(py)}" r="4"/>`;
+        }
+        out += `<g><line class="fw" x1="${f1(wx)}" y1="${f1(wy)}" x2="${f1(wx - 22)}" y2="${f1(wy + R + 18)}"/><line class="fw" x1="${f1(wx)}" y1="${f1(wy)}" x2="${f1(wx + 22)}" y2="${f1(wy + R + 18)}"/>${spokes}<circle class="fw" cx="${f1(wx)}" cy="${f1(wy)}" r="${R}"/>${pods}<circle class="d3" cx="${f1(wx)}" cy="${f1(wy)}" r="3.5"/></g>`;
+        marks.push({ x: wx, y: wy, ghost: true }); // keep blossoms off the wheel
+      }
+      scatter(r, 42, 52, 30).forEach(([x, y]) => { out += tree(x, y, 0.75 + r() * 0.5); });
+      scatter(r, 40, 34, 14).forEach(([x, y]) => { out += `<ellipse class="petal" cx="${f1(x)}" cy="${f1(y)}" rx="2.6" ry="1.5" transform="rotate(${Math.round(r() * 180)} ${f1(x)} ${f1(y)})"/>`; });
+      marks = marks.filter(m => !m.ghost);
+    }
+    if (key === 'monaco') {
+      // harbour: the sea follows the lower edge of the circuit
+      const lowest = Math.max(...geo.poly.map(p => p[1]));
+      const shore = x => {
+        let m = -1e9;
+        geo.poly.forEach(p => { if (Math.abs(p[0] - x) < 60) m = Math.max(m, p[1]); });
+        return Math.max(m + 48, lowest + 22); // hug the pool section, never climb inland
+      };
+      const pts = [];
+      for (let x = vb.x - 1600; x <= vb.x + vb.w + 1600; x += 20) pts.push([x, Math.min(shore(x), vb.y + vb.h + 20)]);
+      out += `<path class="water" d="M${f1(vb.x - 1600)} ${f1(vb.y + vb.h + 4000)} L${pts.map(p => f1(p[0]) + ' ' + f1(p[1])).join(' L')} L${f1(vb.x + vb.w + 1600)} ${f1(vb.y + vb.h + 4000)} Z"/>`;
+      const inSea = (x, y) => y > shore(x) + 14;
+      scatter(r, 40, 60, 30, inSea).forEach(([x, y]) => { out += `<path class="wave" d="M${f1(x - 8)} ${f1(y)} q4 -4 8 0 t8 0"/>`; });
+      scatter(r, 18, 70, 36, inSea).forEach(([x, y]) => {
+        const a = Math.round(r() * 30 - 15), s = (0.8 + r() * 0.7).toFixed(2);
+        out += `<g transform="translate(${f1(x)} ${f1(y)}) rotate(${a}) scale(${s})"><path class="yacht" d="M-14 -5 L9 -5 L16 0 L9 5 L-14 5 Z"/><rect class="deck" x="-8" y="-2.8" width="10" height="5.6" rx="1"/></g>`;
+      });
+      scatter(r, 110, 46, 22, (x, y) => y < shore(x) - 10).forEach(([x, y]) => {
+        const w = 14 + r() * 14, h = 11 + r() * 10, a = Math.round(r() * 40 - 20);
+        out += `<rect class="${r() > .5 ? 'd1' : 'd2'}" x="${f1(x - w / 2)}" y="${f1(y - h / 2)}" width="${f1(w)}" height="${f1(h)}" transform="rotate(${a} ${f1(x)} ${f1(y)})"/>`;
+      });
+    }
+    if (key === 'monza') {
+      scatter(r, 130, 46, 20).forEach(([x, y]) => { out += tree(x, y, 0.7 + r() * 0.5); });
+      const [gx, gy, ga] = pointAt(stopLen[0] + 70), nx = -Math.sin(ga), ny = Math.cos(ga);
+      const side = ((marks[0].x - gx) * nx + (marks[0].y - gy) * ny) > 0 ? -1 : 1; // opposite side from marker 1
+      const fx = gx + nx * 44 * side, fy = gy + ny * 44 * side, deg = 0; // keep the tricolore level so it reads green-white-red
+      out += `<g transform="translate(${f1(fx)} ${f1(fy)}) rotate(${deg})"><rect class="flag-g" x="-27" y="-5" width="18" height="10"/><rect class="flag-w" x="-9" y="-5" width="18" height="10"/><rect class="flag-r" x="9" y="-5" width="18" height="10"/></g>`;
+    }
+    return out;
+  }
+
+  // ---------- build a circuit ----------
+  function render(key) {
+    T = TRACKS[key];
+    document.documentElement.dataset.track = key;
+    geo = build(T.pts);
+    const idx = T.pts.map((p, i) => p[2] ? i : -1).filter(i => i >= 0);
+    stopLen = idx.map(i => geo.ctrlLen[i]);
+    realNames = idx.map(i => T.pts[i][2]);
+    stopNames = NICKNAMES;
+    const d = dOf(geo.poly);
+
+    let kerbs = '';
+    stopLen.forEach((l, k) => { if (k) kerbs += `<path d="${sub(Math.max(0, l - 26), Math.min(geo.total, l + 26))}"/>`; });
+
+    marks = stopLen.map(l => {
+      const [x, y, a] = pointAt(l), nx = -Math.sin(a), ny = Math.cos(a);
+      const c1 = [x + nx * 32, y + ny * 32], c2 = [x - nx * 32, y - ny * 32];
+      const c = minDist(...c1) >= minDist(...c2) ? c1 : c2;
+      return { x: c[0], y: c[1], px: x, py: y };
+    });
+    const xs = geo.poly.map(p => p[0]).concat(marks.map(m => m.x));
+    const ys = geo.poly.map(p => p[1]).concat(marks.map(m => m.y));
+    const minx = Math.min(...xs), maxx = Math.max(...xs), miny = Math.min(...ys), maxy = Math.max(...ys);
+    vb = { x: minx - 50, y: miny - 50, w: maxx - minx + 100, h: maxy - miny + 100 };
+    tc = { x: (minx + maxx) / 2, y: (miny + maxy) / 2 };
+    marks.forEach(m => { m.right = m.x >= m.px; }); // label sits on the side facing away from the track
+    svg.setAttribute('viewBox', `${f1(vb.x)} ${f1(vb.y)} ${f1(vb.w)} ${f1(vb.h)}`);
+    svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+
+    // cards sit on the far side of the screen from their corner
+    sides = stopLen.map((l, k) => (k === 0 || k === N - 1) ? 'right' : (marks[k].px < tc.x ? 'right' : 'left'));
+    cards.forEach((c, k) => { c.classList.toggle('right', sides[k] === 'right'); c.classList.toggle('left', sides[k] === 'left'); });
+
+    let bridge = '';
+    bridgeRange = null;
+    if (T.bridge) {
+      const a = geo.ctrlLen[T.bridge[0]], b = geo.ctrlLen[T.bridge[1]], bd = sub(a, b);
+      bridgeRange = [a, b];
+      bridge = `<g class="bridge"><path class="shadow" d="${bd}"/><path class="deck-b" d="${bd}"/><path class="asphalt" d="${bd}"/><path class="drive" id="bdrive" d="${bd}"/></g>`;
+    }
+    const [sx, sy, sa] = pointAt(0), snx = -Math.sin(sa) * 10, sny = Math.cos(sa) * 10;
+    const sl = `x1="${f1(sx + snx)}" y1="${f1(sy + sny)}" x2="${f1(sx - snx)}" y2="${f1(sy - sny)}"`;
+    const deco = scenery(key);
+
+    svg.innerHTML = `
+      <defs><pattern id="grass" patternUnits="userSpaceOnUse" width="120" height="120" patternTransform="rotate(25)">
+        <rect class="g1" width="60" height="120"/><rect class="g2" x="60" width="60" height="120"/></pattern></defs>
+      <g id="world">
+        <rect x="${f1(vb.x - 4000)}" y="${f1(vb.y - 4000)}" width="${f1(vb.w + 8000)}" height="${f1(vb.h + 8000)}" fill="url(#grass)"/>
+        <g class="scenery">${deco}</g>
+        <path class="track-line runoff" d="${d}"/>
+        <g class="kerb-w">${kerbs}</g><g class="kerb-r">${kerbs}</g>
+        <path class="track-line edge" d="${d}"/>
+        <path class="track-line asphalt" d="${d}"/>
+        <path class="track-line drive" id="drive" d="${d}"/>
+        <line class="sl-b" ${sl}/><line class="sl-w" ${sl}/>
+        ${bridge}
+        <g id="marks">${marks.map((m, k) => `
+          <g class="mk" data-k="${k}" tabindex="0" role="button" aria-label="Corner ${k + 1}: ${stopNames[k]} (${realNames[k]})" transform="translate(${f1(m.x)} ${f1(m.y)})"><title>${stopNames[k]} · real corner: ${realNames[k]}</title>
+            <line class="leader" x1="0" y1="0" x2="${f1((m.px - m.x) * 0.55)}" y2="${f1((m.py - m.y) * 0.55)}"/>
+            <circle class="ring" r="12"/><circle r="12"/><text y="4">${k + 1}</text>
+          </g>`).join('')}</g>
+        <text id="clabel" class="clabel"></text>
+        <g id="car">
+          <rect class="trim" x="-13" y="-6.5" width="3.4" height="13" rx="1"/>
+          <rect class="tyre" x="-10" y="-7" width="5.5" height="3"/><rect class="tyre" x="-10" y="4" width="5.5" height="3"/>
+          <rect class="tyre" x="5" y="-6.5" width="4.5" height="2.6"/><rect class="tyre" x="5" y="3.9" width="4.5" height="2.6"/>
+          <path class="body" d="M-11 -3 L6 -2.2 L13 -0.8 L13 0.8 L6 2.2 L-11 3 Z"/>
+          <rect class="body" x="11" y="-6.5" width="2.6" height="13" rx="1"/>
+          <circle class="trim" cx="-1.5" cy="0" r="1.9"/>
+        </g>
+      </g>`;
+
+    world = $('world'); car = $('car'); drive = $('drive'); bdrive = $('bdrive'); clabel = $('clabel');
+    drive.style.strokeDasharray = `${geo.total} ${geo.total}`;
+    svg.querySelectorAll('.mk').forEach(g => {
+      const go = () => jump(+g.dataset.k);
+      g.addEventListener('click', go);
+      g.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    });
+
+    cards.forEach((c, k) => {
+      c.querySelector('.cn').textContent = stopNames[k];
+      const nx = c.querySelector('.cardnav .next');
+      nx.textContent = k === N - 1 ? 'Back to the grid ↺' : `Next: ${stopNames[k + 1]} →`;
+    });
+    $('lapbar').innerHTML = stopNames.map((n, k) => `<button type="button" data-k="${k}" title="${n} · real corner: ${realNames[k]}" aria-label="Corner ${k + 1}: ${n}">${k + 1}</button>`).join('');
+    $('lapbar').querySelectorAll('button').forEach(b => b.addEventListener('click', () => jump(+b.dataset.k)));
+    $('cName').textContent = T.full;
+    $('cInfo').textContent = T.info;
+    document.querySelectorAll('.picker button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.t === key)));
+    lastIdx = -1; shown = -2; cam = null;
+    disp = prevDisp = progress().len;
+    layout();
+  }
+
+  // ---------- screen layout & camera ----------
+  function layout() {
+    const W = innerWidth, H = innerHeight, mobile = W <= 760;
+    const s = Math.min(W / vb.w, H / vb.h);
+    const ox = (W - vb.w * s) / 2, oy = (H - vb.h * s) / 2;
+    const pz = $('popzone').getBoundingClientRect();
+    let free;
+    if (mobile) {
+      const f = { x0: 0, x1: W, y0: 56, y1: pz.top - 8 };
+      free = { right: f, left: f };
+    } else {
+      const cw = Math.min(470, W * 0.42) + 24;
+      free = {
+        right: { x0: 8, x1: pz.right - cw, y0: 64, y1: H - 56 },
+        left: { x0: pz.left + cw, x1: W - 8, y0: 64, y1: H - 56 }
+      };
+    }
+    const fr = free.right, fw = fr.x1 - fr.x0, fh = fr.y1 - fr.y0;
+    const z0 = Math.min(1, (fw - 80) / (vb.w * s), (fh - 40) / (vb.h * s));
+    L = { s, ox, oy, free, z0, zoom: z0 * (mobile ? 1.9 : 2.0), mobile };
+  }
+  function camFor(k) {
+    const f = L.free[sides[k]];
+    const sx = (f.x0 + f.x1) / 2, sy = (f.y0 + f.y1) / 2;
+    if (k === 0 || k === N - 1) return { x: tc.x, y: tc.y, z: L.z0, sx, sy };
+    return { x: marks[k].px, y: marks[k].py, z: L.zoom, sx, sy };
+  }
+  function toScreen(wx, wy) {
+    const vx = vb.x + (cam.sx - L.ox) / L.s, vy = vb.y + (cam.sy - L.oy) / L.s;
+    return [L.ox + (vx + cam.z * (wx - cam.x) - vb.x) * L.s, L.oy + (vy + cam.z * (wy - cam.y) - vb.y) * L.s];
+  }
+
+  // ---------- scroll → lap position ----------
+  function progress() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? Math.max(0, Math.min(1, scrollY / max)) * (N - 1) : 0;
+    let idx = Math.floor(p + 1e-6), f = p - idx;
+    if (idx >= N - 1) { idx = N - 1; f = 0; }
+    const dp = Math.max(0, (f - HOLD) / (1 - HOLD));
+    const e = dp < .5 ? 2 * dp * dp : 1 - Math.pow(-2 * dp + 2, 2) / 2;
+    const len = stopLen[idx] + (idx < N - 1 ? e * (stopLen[idx + 1] - stopLen[idx]) : 0);
+    return { idx, e, parked: dp === 0, len };
+  }
+  function jump(k) {
+    k = Math.max(0, Math.min(N - 1, k));
+    const max = document.documentElement.scrollHeight - innerHeight;
+    scrollTo({ top: Math.round(k / (N - 1) * max) + 1, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  // ---------- per-frame ----------
+  const GEARS = [0, 70, 110, 150, 190, 230, 265, 300];
+  function frame(now) {
+    const P = progress();
+    disp = reduce ? P.len : disp + (P.len - disp) * 0.14;
+    if (Math.abs(P.len - disp) < 0.05) disp = P.len;
+    const [x, y, a] = pointAt(disp);
+
+    // camera: parked on a corner, pulling back and following the car between corners
+    const A = camFor(P.idx), B = P.idx < N - 1 ? camFor(P.idx + 1) : A;
+    const e = P.e, w = Math.sin(Math.PI * e), lerp = (u, v) => u + (v - u) * e;
+    const tgt = {
+      x: lerp(A.x, B.x) * (1 - w) + x * w,
+      y: lerp(A.y, B.y) * (1 - w) + y * w,
+      z: Math.max(L.z0, lerp(A.z, B.z) * (1 - 0.35 * w)),
+      sx: lerp(A.sx, B.sx), sy: lerp(A.sy, B.sy)
+    };
+    if (!cam || reduce) cam = { ...tgt };
+    else for (const k in tgt) cam[k] += (tgt[k] - cam[k]) * 0.1;
+    const vx = vb.x + (cam.sx - L.ox) / L.s, vy = vb.y + (cam.sy - L.oy) / L.s;
+    world.setAttribute('transform', `translate(${f1(vx)} ${f1(vy)}) scale(${cam.z.toFixed(4)}) translate(${f1(-cam.x)} ${f1(-cam.y)})`);
+
+    car.setAttribute('transform', `translate(${f1(x)} ${f1(y)}) rotate(${f1(a * 180 / Math.PI)})`);
+    drive.style.strokeDashoffset = geo.total - disp;
+    if (bdrive) bdrive.style.strokeDasharray = `${Math.max(0, Math.min(bridgeRange[1] - bridgeRange[0], disp - bridgeRange[0]))} 99999`;
+
+    // speed & gear from how fast the car is moving
+    const dt = Math.max(1, now - prevT);
+    const raw = Math.min(338, Math.abs(disp - prevDisp) / dt * 1000 * 0.55);
+    speed += (raw - speed) * 0.12;
+    if (speed < 0.5) speed = 0;
+    prevDisp = disp; prevT = now;
+    const s = Math.round(speed);
+    $('hSpeed').textContent = s;
+    $('hGear').textContent = s === 0 ? 'N' : GEARS.filter(g => s >= g).length;
+    [...$('sectors').children].forEach((el, i) => {
+      const [a0, a1] = SECTORS[i], f = Math.max(0, Math.min(1, (disp - stopLen[a0]) / (stopLen[a1] - stopLen[a0])));
+      el.style.setProperty('--f', (f * 100).toFixed(1) + '%');
+      el.classList.toggle('pb', f >= 0.999);
+    });
+
+    // corner state
+    if (P.idx !== lastIdx) {
+      lastIdx = P.idx;
+      svg.querySelectorAll('.mk').forEach((g, k) => { g.classList.toggle('on', k === P.idx); g.classList.toggle('done', k < P.idx); });
+      $('lapbar').querySelectorAll('button').forEach((b, k) => { b.classList.toggle('on', k === P.idx); b.classList.toggle('done', k < P.idx); });
+      $('hNum').textContent = String(P.idx + 1).padStart(2, '0');
+      $('hCorner').textContent = stopNames[P.idx];
+      const m = marks[P.idx];
+      clabel.textContent = stopNames[P.idx];
+      clabel.setAttribute('x', f1(m.x + (m.right ? 18 : -18)));
+      clabel.setAttribute('y', f1(m.y + 6));
+      clabel.setAttribute('text-anchor', m.right ? 'start' : 'end');
+    }
+    const want = P.parked ? P.idx : -1;
+    if (want !== shown) {
+      shown = want;
+      cards.forEach((c, k) => { c.classList.toggle('show', k === shown); if (k !== shown) c.scrollTop = 0; });
+    }
+    $('scrollhint').classList.toggle('gone', scrollY > 20);
+
+    // dashed wire from the corner to its card
+    const wire = $('wire');
+    if (shown >= 0) {
+      const m = marks[shown], [mx, my] = toScreen(m.x, m.y), r = cards[shown].getBoundingClientRect();
+      let ax, ay;
+      if (L.mobile) { ax = Math.max(r.left + 24, Math.min(r.right - 24, mx)); ay = r.top; }
+      else { ax = sides[shown] === 'right' ? r.left : r.right; ay = Math.max(r.top + 24, Math.min(r.bottom - 24, my)); }
+      $('wireLine').setAttribute('x1', f1(mx)); $('wireLine').setAttribute('y1', f1(my));
+      $('wireLine').setAttribute('x2', f1(ax)); $('wireLine').setAttribute('y2', f1(ay));
+      $('wireDot').setAttribute('cx', f1(ax)); $('wireDot').setAttribute('cy', f1(ay));
+      wire.style.opacity = 1;
+    } else wire.style.opacity = 0;
+
+    requestAnimationFrame(frame);
+  }
+
+  // ---------- controls ----------
+  cards.forEach((c, k) => {
+    const nav = document.createElement('div');
+    nav.className = 'cardnav';
+    nav.innerHTML = `<button type="button" class="prev"${k === 0 ? ' hidden' : ''}>← Back</button><button type="button" class="next"></button>`;
+    nav.querySelector('.prev').addEventListener('click', () => jump(k - 1));
+    nav.querySelector('.next').addEventListener('click', () => jump(k === N - 1 ? 0 : k + 1));
+    c.appendChild(nav);
+  });
+  addEventListener('keydown', e => {
+    const cur = lastIdx < 0 ? 0 : lastIdx;
+    if (e.key === 'ArrowRight' || e.key === 'n') { e.preventDefault(); jump(cur + 1); }
+    if (e.key === 'ArrowLeft' || e.key === 'p') { e.preventDefault(); jump(shown >= 0 ? cur - 1 : cur); }
+  });
+
+  let current = 'suzuka';
+  try { const saved = localStorage.getItem('mm-track'); if (saved && TRACKS[saved]) current = saved; } catch (err) {}
+  render(current);
+  document.querySelectorAll('.picker button').forEach(b => b.addEventListener('click', () => {
+    current = b.dataset.t;
+    try { localStorage.setItem('mm-track', current); } catch (err) {}
+    render(current);
+  }));
+  let rt;
+  addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(layout, 120); });
+  requestAnimationFrame(frame);
+
+  // ---------- start lights ----------
+  function startLights() {
+    if (reduce) return;
+    const lights = [...document.querySelectorAll('.lights i')], txt = $('lightsText');
+    txt.textContent = 'Formation lap';
+    lights.forEach((l, i) => setTimeout(() => l.classList.add('lit'), 400 + i * 500));
+    setTimeout(() => { lights.forEach(l => l.classList.remove('lit')); txt.textContent = 'Lights out'; }, 400 + 5 * 500 + 600);
+  }
+
+  // ---------- M&M loader (once per visit) ----------
+  const loader = $('loader');
+  let seen = false;
+  try { seen = sessionStorage.getItem('mm-intro') === '1'; } catch (err) {}
+  if (reduce || seen) { loader.remove(); startLights(); }
+  else {
+    const colors = ['#E4202E', '#1E73E8', '#FFB000', '#17A34A', '#F27A1A', '#6B3F26'];
+    const box = $('candies');
+    const count = innerWidth < 600 ? 16 : 28;
+    for (let i = 0; i < count; i++) {
+      const c = document.createElement('span');
+      c.className = 'candy';
+      c.textContent = 'm';
+      c.style.left = (Math.random() * 96) + '%';
+      c.style.background = colors[i % colors.length];
+      c.style.setProperty('--delay', (Math.random() * 1.3).toFixed(2) + 's');
+      c.style.setProperty('--dur', (0.9 + Math.random() * 0.7).toFixed(2) + 's');
+      c.style.setProperty('--rest', Math.round(Math.random() * 70) + 'px');
+      c.style.setProperty('--spin', Math.round(Math.random() * 540 - 270) + 'deg');
+      box.appendChild(c);
+    }
+    const t0 = performance.now(), DUR = 2100;
+    let closed = false;
+    const close = () => {
+      if (closed) return;
+      closed = true;
+      try { sessionStorage.setItem('mm-intro', '1'); } catch (err) {}
+      loader.classList.add('done');
+      setTimeout(() => loader.remove(), 800);
+      startLights();
+    };
+    const tick = now => {
+      if (closed) return;
+      const p = Math.min(1, (now - t0) / DUR), eased = 1 - Math.pow(1 - p, 3);
+      $('lfill').style.width = (eased * 100).toFixed(1) + '%';
+      $('lcount').textContent = String(Math.round(eased * 100)).padStart(3, '0');
+      if (p < 1) requestAnimationFrame(tick); else setTimeout(close, 250);
+    };
+    requestAnimationFrame(tick);
+    loader.addEventListener('click', close);
+    addEventListener('keydown', close, { once: true });
+    addEventListener('wheel', close, { once: true, passive: true });
+    addEventListener('touchmove', close, { once: true, passive: true });
+  }
+})();
+</script>
+</body>
+</html>
