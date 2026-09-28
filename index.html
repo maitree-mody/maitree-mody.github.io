@@ -392,6 +392,11 @@
   .lights span { font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; color: #FFFFFF; text-transform: uppercase; margin-left: 6px; }
   .radio { background: var(--strip); color: var(--strip-ink); padding: 13px 15px; font-family: var(--mono); font-size: .78rem; display: flex; flex-direction: column; gap: 6px; }
   .radio .who { color: var(--mark); font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; }
+  .jokes button {
+    align-self: flex-start; margin-top: 4px; background: transparent; color: var(--mark); border: 1px solid rgba(255,255,255,.2);
+    border-radius: 2px; padding: 5px 10px; font-family: var(--mono); font-size: .66rem; letter-spacing: .1em; text-transform: uppercase; cursor: pointer;
+  }
+  .jokes button:hover { border-color: var(--mark); }
   .big { font-family: var(--display); font-weight: 700; font-size: clamp(1.15rem, 2.2vw, 1.5rem); word-break: break-word; }
   .chequer { height: 12px; background: repeating-conic-gradient(var(--ink) 0 25%, var(--panel) 0 50%) 0 0 / 12px 12px; }
   .foot { font-family: var(--mono); font-size: .66rem; color: var(--muted); }
@@ -750,6 +755,11 @@
             <div class="art route" aria-hidden="true">∫ dx</div>
             <h3>Favourite subject</h3><p>Maths. You can't predict the question, but you can practise until you have the tools.</p>
           </div>
+        </div>
+        <div class="radio jokes">
+          <span class="who">Team radio · Fair warning: I love a bad joke</span>
+          <span id="joke">"Our history textbook has every chapter printed twice, because history repeats itself."</span>
+          <button type="button" id="jokeNext" hidden>Another one →</button>
         </div>
       </div>
     </article>
@@ -1177,6 +1187,16 @@
     } else wire.style.opacity = 0;
 
     requestAnimationFrame(frame);
+  }
+
+  // ---------- bad jokes (add more lines here; the button appears once there are two) ----------
+  const JOKES = [
+    'Our history textbook has every chapter printed twice, because history repeats itself.'
+  ];
+  if (JOKES.length > 1) {
+    let j = 0;
+    $('jokeNext').hidden = false;
+    $('jokeNext').addEventListener('click', () => { j = (j + 1) % JOKES.length; $('joke').textContent = '"' + JOKES[j] + '"'; });
   }
 
   // ---------- controls ----------
